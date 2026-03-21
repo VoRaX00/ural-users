@@ -1,6 +1,6 @@
 FROM mirror.gcr.io/library/eclipse-temurin:21-jre-alpine
 
-COPY ural-auth-service/target/*.jar service.jar
+COPY ural-users-service/target/*.jar service.jar
 
 EXPOSE 8080
 
