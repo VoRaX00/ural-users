@@ -15,13 +15,20 @@
     <changeSet id="create table users" author="kerzhakov">
         <createTable tableName="users">
             <column name="uuid" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true"/>
             </column>
-            <column name="firstname" type="varchar(255)"/>
-            <column name="lastname" type="varchar(255)"/>
+            <column name="email" type="TEXT">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="patronymic" type="varchar(255)"/>
             <column name="phone_number" type="text">
-                <constraints unique="true"/>
+                <constraints unique="true" nullable="true"/>
             </column>
         </createTable>
     </changeSet>
