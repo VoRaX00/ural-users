@@ -30,7 +30,8 @@ spring:
     default-schema: ural_users
 
 auth:
-  url: http://localhost:10906
+  url: http://localhost:10906/api/auth
+  path-registration: ${auth.url}/registration
 
 logging:
   level:

@@ -2,6 +2,7 @@ package ru.ural.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -22,10 +23,11 @@ public class AuthSender {
 
     private final AuthProperty authProperty;
 
-    public AuthDto registration(UserDto userDto) {
+    @NonNull
+    public AuthDto registration(@NonNull UserDto userDto) {
         HttpEntity<UserDto> httpEntity = new HttpEntity<>(userDto);
 
-        URI uri = RestSender.encodeUrl(authProperty.getUrl(), null);
+        URI uri = RestSender.encodeUrl(authProperty.getPathRegistration(), null);
         HttpResponse<AuthDto> authDto = restSender.sendRequest(
                 uri,
                 HttpMethod.POST,

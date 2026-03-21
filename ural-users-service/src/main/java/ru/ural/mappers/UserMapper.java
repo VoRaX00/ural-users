@@ -26,7 +26,7 @@ public interface UserMapper {
 
     UserDto toDto(UserModel userModel);
 
-    ru.ural.auth.dto.UserDto toAuthUserDto(User user);
+    ru.ural.auth.dto.UserDto toAuthUserDto(RegistrationModel user);
 
     @Mapping(target = "uuid", ignore = true)
     void mapModelToEntity(@MappingTarget User user, UserModel userModel);

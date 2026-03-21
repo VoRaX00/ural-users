@@ -29,6 +29,7 @@ spring:
 
 auth:
   url: ${AUTH_URL}
+  path-registration: ${auth.url}/registration
 
 logging:
   level:

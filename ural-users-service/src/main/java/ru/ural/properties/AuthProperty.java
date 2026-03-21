@@ -11,4 +11,6 @@ public class AuthProperty {
 
     private String url;
 
+    private String pathRegistration;
+
 }

@@ -32,16 +32,19 @@ public class UserService {
 
     private final UserMapper userMapper;
 
+    @Transactional
     public AuthDto create(@NonNull RegistrationModel model) {
         validateUser(model);
 
         User newUser = userMapper.toEntity(model);
         User savedUser = userRepository.save(newUser);
-        return sendRegistration(savedUser);
+        return sendRegistration(model, savedUser.getUuid());
     }
 
-    private AuthDto sendRegistration(User user) {
+    private AuthDto sendRegistration(RegistrationModel user, UUID uuid) {
         UserDto userDto = userMapper.toAuthUserDto(user);
+        userDto.setUuid(uuid);
+
         return authSender.registration(userDto);
     }
 
