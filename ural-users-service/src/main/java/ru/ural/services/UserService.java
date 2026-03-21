@@ -5,10 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.ural.auth.dto.AuthDto;
+import ru.ural.auth.dto.UserDto;
 import ru.ural.entities.User;
 import ru.ural.exceptions.ConflictException;
 import ru.ural.exceptions.NotFoundException;
 import ru.ural.mappers.UserMapper;
+import ru.ural.models.RegistrationModel;
 import ru.ural.models.UserModel;
 import ru.ural.repositories.UserRepository;
 
@@ -23,16 +26,23 @@ public class UserService {
 
     private static final String USER_NOT_FOUND = "Пользователь с uuid: %s не найден";
 
+    private final AuthSender authSender;
+
     private final UserRepository userRepository;
 
     private final UserMapper userMapper;
 
-    public UserModel create(@NonNull UserModel userModel) {
-        validateUser(userModel);
+    public AuthDto create(@NonNull RegistrationModel model) {
+        validateUser(model);
 
-        User newUser = userMapper.toEntity(userModel);
+        User newUser = userMapper.toEntity(model);
         User savedUser = userRepository.save(newUser);
-        return userMapper.toModel(savedUser);
+        return sendRegistration(savedUser);
+    }
+
+    private AuthDto sendRegistration(User user) {
+        UserDto userDto = userMapper.toAuthUserDto(user);
+        return authSender.registration(userDto);
     }
 
     @Transactional

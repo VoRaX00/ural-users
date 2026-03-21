@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: ural-cargo
+    name: ural-users
     version: @project.version@
   datasource:
     url: ${DB_URL}/${DB_NAME}
@@ -26,6 +26,9 @@ spring:
     database-change-log-table: ural_users_log
     database-change-log-lock-table: ural_users_lock
     change-log: classpath:db/changelog.yaml
+
+auth:
+  url: ${AUTH_URL}
 
 logging:
   level:

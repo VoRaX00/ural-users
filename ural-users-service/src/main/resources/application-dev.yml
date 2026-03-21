@@ -29,6 +29,9 @@ spring:
     change-log: classpath:db/changelog-master.xml
     default-schema: ural_users
 
+auth:
+  url: http://localhost:10906
+
 logging:
   level:
     root: info

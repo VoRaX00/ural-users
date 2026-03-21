@@ -25,17 +25,29 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>ural-users-db</artifactId>
         </dependency>
+
+        <!--common starter-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>ural-exception-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>ural-test-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ural-rest-starter</artifactId>
+        </dependency>
+
+        <!--ural-auth-->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>ural-security-core</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ural-test-starter</artifactId>
+            <artifactId>ural-auth-api</artifactId>
         </dependency>
 
         <dependency>

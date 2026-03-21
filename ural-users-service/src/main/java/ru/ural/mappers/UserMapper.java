@@ -5,8 +5,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import ru.ural.dto.UserDto;
+import ru.ural.dto.UserRegistration;
 import ru.ural.dto.UserRequest;
 import ru.ural.entities.User;
+import ru.ural.models.RegistrationModel;
 import ru.ural.models.UserModel;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
@@ -17,9 +19,14 @@ public interface UserMapper {
     UserModel toModel(User user);
 
     @Mapping(target = "uuid", ignore = true)
+    RegistrationModel toModel(UserRegistration userRegistration);
+
+    @Mapping(target = "uuid", ignore = true)
     UserModel toModel(UserRequest userRequest);
 
     UserDto toDto(UserModel userModel);
+
+    ru.ural.auth.dto.UserDto toAuthUserDto(User user);
 
     @Mapping(target = "uuid", ignore = true)
     void mapModelToEntity(@MappingTarget User user, UserModel userModel);
