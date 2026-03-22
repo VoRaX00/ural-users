@@ -1,4 +1,4 @@
-package ru.ural.entities;
+package ru.ural.users.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

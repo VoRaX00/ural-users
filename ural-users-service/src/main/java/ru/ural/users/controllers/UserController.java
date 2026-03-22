@@ -1,17 +1,17 @@
-package ru.ural.controllers;
+package ru.ural.users.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.ural.api.UsersApi;
+import ru.ural.users.api.UsersApi;
 import ru.ural.auth.dto.AuthDto;
-import ru.ural.dto.UserDto;
-import ru.ural.dto.UserRegistration;
-import ru.ural.dto.UserRequest;
-import ru.ural.mappers.UserMapper;
-import ru.ural.models.RegistrationModel;
-import ru.ural.models.UserModel;
-import ru.ural.services.UserService;
+import ru.ural.users.dto.UserDto;
+import ru.ural.users.dto.UserRegistration;
+import ru.ural.users.dto.UserRequest;
+import ru.ural.users.mappers.UserMapper;
+import ru.ural.users.models.RegistrationModel;
+import ru.ural.users.models.UserModel;
+import ru.ural.users.services.UserService;
 
 @RestController
 @RequiredArgsConstructor

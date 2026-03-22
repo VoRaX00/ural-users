@@ -1,4 +1,4 @@
-package ru.ural.models;
+package ru.ural.users.models;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;

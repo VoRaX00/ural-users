@@ -1,4 +1,4 @@
-package ru.ural.dto;
+package ru.ural.users.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

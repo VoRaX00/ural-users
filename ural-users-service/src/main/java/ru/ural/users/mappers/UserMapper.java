@@ -1,15 +1,15 @@
-package ru.ural.mappers;
+package ru.ural.users.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
-import ru.ural.dto.UserDto;
-import ru.ural.dto.UserRegistration;
-import ru.ural.dto.UserRequest;
-import ru.ural.entities.User;
-import ru.ural.models.RegistrationModel;
-import ru.ural.models.UserModel;
+import ru.ural.users.dto.UserDto;
+import ru.ural.users.dto.UserRegistration;
+import ru.ural.users.dto.UserRequest;
+import ru.ural.users.entities.User;
+import ru.ural.users.models.RegistrationModel;
+import ru.ural.users.models.UserModel;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {

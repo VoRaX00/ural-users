@@ -1,4 +1,4 @@
-package ru.ural.properties;
+package ru.ural.users.properties;
 
 import lombok.Getter;
 import lombok.Setter;

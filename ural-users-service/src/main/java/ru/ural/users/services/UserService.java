@@ -1,4 +1,4 @@
-package ru.ural.services;
+package ru.ural.users.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ural.auth.dto.AuthDto;
 import ru.ural.auth.dto.UserDto;
-import ru.ural.entities.User;
+import ru.ural.users.entities.User;
 import ru.ural.exceptions.ConflictException;
 import ru.ural.exceptions.NotFoundException;
-import ru.ural.mappers.UserMapper;
-import ru.ural.models.RegistrationModel;
-import ru.ural.models.UserModel;
-import ru.ural.repositories.UserRepository;
+import ru.ural.users.mappers.UserMapper;
+import ru.ural.users.models.RegistrationModel;
+import ru.ural.users.models.UserModel;
+import ru.ural.users.repositories.UserRepository;
 
 import java.util.UUID;
 

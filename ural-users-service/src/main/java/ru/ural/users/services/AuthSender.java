@@ -1,4 +1,4 @@
-package ru.ural.services;
+package ru.ural.users.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import ru.ural.auth.dto.AuthDto;
 import ru.ural.auth.dto.UserDto;
 import ru.ural.models.HttpResponse;
-import ru.ural.properties.AuthProperty;
+import ru.ural.services.RestSender;
+import ru.ural.users.properties.AuthProperty;
 
 import java.net.URI;
 
