@@ -25,4 +25,6 @@ public class UserModel {
 
     private String phoneNumber;
 
+    private AvatarModel avatar;
+
 }

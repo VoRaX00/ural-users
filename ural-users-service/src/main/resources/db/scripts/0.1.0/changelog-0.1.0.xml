@@ -32,5 +32,38 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="create avatar table" author="kerzhakov">
+        <createTable tableName="avatars">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="photo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo_thumbnail_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="crop_x" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="crop_y" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="crop_size" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_uuid" type="uuid">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        
+        <addForeignKeyConstraint baseTableName="avatars"
+                                 baseColumnNames="user_uuid"
+                                 constraintName="fk_avatars_users_uuid"
+                                 referencedTableName="users"
+                                 referencedColumnNames="uuid"
+                                 onDelete="CASCADE"/>
+    </changeSet>
 
 </databaseChangeLog>

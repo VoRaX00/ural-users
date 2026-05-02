@@ -32,4 +32,6 @@ public class UserDto {
     @Schema(description = "Номер телефона")
     private String phoneNumber;
 
+    @Schema(description = "Аватар пользователя")
+    private AvatarDto avatar;
 }

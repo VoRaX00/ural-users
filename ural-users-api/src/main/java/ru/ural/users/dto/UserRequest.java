@@ -31,4 +31,7 @@ public class UserRequest {
     @Schema(description = "Номер телефона")
     private String phoneNumber;
 
+    @Schema(description = "Аватар")
+    private AvatarRequest avatar;
+
 }

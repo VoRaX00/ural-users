@@ -1,5 +1,7 @@
 package ru.ural.users.entities;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,5 +42,8 @@ public class User {
 
     @Column(unique = true)
     private String phoneNumber;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Avatar avatar;
 
 }

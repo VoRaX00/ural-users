@@ -11,7 +11,10 @@ import ru.ural.users.entities.User;
 import ru.ural.users.models.RegistrationModel;
 import ru.ural.users.models.UserModel;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        uses = AvatarMapper.class
+)
 public interface UserMapper {
 
     User toEntity(UserModel userModel);

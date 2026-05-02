@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ural.auth.dto.AuthDto;
 import ru.ural.auth.dto.UserDto;
+import ru.ural.users.entities.Avatar;
 import ru.ural.users.entities.User;
 import ru.ural.exceptions.ConflictException;
 import ru.ural.exceptions.NotFoundException;
+import ru.ural.users.mappers.AvatarMapper;
 import ru.ural.users.mappers.UserMapper;
+import ru.ural.users.models.AvatarModel;
 import ru.ural.users.models.RegistrationModel;
 import ru.ural.users.models.UserModel;
+import ru.ural.users.repositories.AvatarRepository;
 import ru.ural.users.repositories.UserRepository;
 
 import java.util.UUID;
@@ -30,11 +34,15 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final AvatarRepository avatarRepository;
+
     private final UserMapper userMapper;
+
+    private final AvatarMapper avatarMapper;
 
     @Transactional
     public AuthDto create(@NonNull RegistrationModel model) {
-        validateUser(model);
+        validateUser(model, null);
 
         User newUser = userMapper.toEntity(model);
         User savedUser = userRepository.save(newUser);
@@ -55,15 +63,22 @@ public class UserService {
                         USER_NOT_FOUND, uuid
                 )));
 
-        validateUser(userModel);
+        validateUser(userModel, uuid);
+        updateAvatar(user, userModel.getAvatar());
+
         userMapper.mapModelToEntity(user, userModel);
         return userMapper.toModel(user);
     }
 
-    private void validateUser(UserModel userModel) {
+    private void validateUser(UserModel userModel, String uuid) {
+        UUID castUuid = uuid == null
+                ? null
+                : UUID.fromString(uuid);
+
         boolean existsUser = userRepository.existsByEmailOrPhoneNumber(
                 userModel.getEmail(),
-                userModel.getPhoneNumber()
+                userModel.getPhoneNumber(),
+                castUuid
         );
 
         if (existsUser) {
@@ -78,6 +93,24 @@ public class UserService {
                 )));
 
         return userMapper.toModel(user);
+    }
+
+    private void updateAvatar(User user, AvatarModel avatarModel) {
+        if (avatarModel == null) {
+            return;
+        }
+
+        Avatar avatar = user.getAvatar();
+        if (avatar != null) {
+            avatarMapper.mapModelToEntity(avatar, avatarModel);
+            return;
+        }
+
+        Avatar updatedAvatar = avatarMapper.toEntity(avatarModel);
+        updatedAvatar.setUser(user);
+
+        var savedAvatar = avatarRepository.save(updatedAvatar);
+        user.setAvatar(savedAvatar);
     }
 
 }
