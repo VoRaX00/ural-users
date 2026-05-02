@@ -42,7 +42,7 @@ public class UserService {
 
     @Transactional
     public AuthDto create(@NonNull RegistrationModel model) {
-        validateUser(model, null);
+        validateUser(model);
 
         User newUser = userMapper.toEntity(model);
         User savedUser = userRepository.save(newUser);
@@ -63,14 +63,25 @@ public class UserService {
                         USER_NOT_FOUND, uuid
                 )));
 
-        validateUser(userModel, uuid);
+        validateUserForUpdate(userModel, uuid);
         updateAvatar(user, userModel.getAvatar());
 
         userMapper.mapModelToEntity(user, userModel);
         return userMapper.toModel(user);
     }
 
-    private void validateUser(UserModel userModel, String uuid) {
+    private void validateUser(UserModel userModel) {
+        boolean existsUser = userRepository.existsByEmailOrPhoneNumber(
+                userModel.getEmail(),
+                userModel.getPhoneNumber()
+        );
+
+        if (existsUser) {
+            throw new ConflictException(ERROR_USER_EXISTS);
+        }
+    }
+
+    private void validateUserForUpdate(UserModel userModel, String uuid) {
         UUID castUuid = uuid == null
                 ? null
                 : UUID.fromString(uuid);

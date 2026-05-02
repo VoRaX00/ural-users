@@ -15,6 +15,15 @@ public interface UserRepository extends JpaRepository<User, UUID> {
         SELECT EXISTS(
             SELECT 1
             FROM users
+            WHERE email = :email OR phone_number = :phoneNumber
+        )
+    """, nativeQuery = true)
+    boolean existsByEmailOrPhoneNumber(String email, String phoneNumber);
+
+    @Query(value = """
+        SELECT EXISTS(
+            SELECT 1
+            FROM users
             WHERE (email = :email OR phone_number = :phoneNumber) AND (uuid <> :uuid OR :uuid IS NULL)
         )
     """, nativeQuery = true)
